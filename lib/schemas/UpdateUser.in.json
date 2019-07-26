@@ -1,0 +1,49 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "UserUpdate describes an user update payload",
+            "type": "object",
+            "required": [
+                "user"
+            ],
+            "properties": {
+                "organizationId": {
+                    "description": "id of the editing organization\nnot needed if user is editing himself",
+                    "type": "integer",
+                    "format": "int64",
+                    "x-go-name": "OrganizationID"
+                },
+                "user": {
+                    "description": "User is a basic copy of user-service's PublicUser",
+                    "type": "object",
+                    "properties": {
+                        "email": {
+                            "description": "users email address",
+                            "type": "string",
+                            "x-go-name": "EMail"
+                        },
+                        "id": {
+                            "description": "ID for this user",
+                            "type": "integer",
+                            "format": "int64",
+                            "x-go-name": "ID"
+                        },
+                        "name": {
+                            "description": "name of the user",
+                            "type": "string",
+                            "x-go-name": "Name"
+                        },
+                        "surname": {
+                            "description": "surname of the user",
+                            "type": "string",
+                            "x-go-name": "Surname"
+                        }
+                    },
+                    "x-go-package": "groupalarm.com/go/audit/api/services"
+                }
+            },
+            "x-go-package": "groupalarm.com/go/user/api/services"
+        }
+    }
+}

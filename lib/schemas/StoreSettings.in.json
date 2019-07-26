@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "UserSettings contains all user-defined settings",
+            "type": "object",
+            "properties": {
+                "checks": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "x-go-name": "Checks"
+                },
+                "defaultOrganizationId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "x-go-name": "DefaultOrganizationID"
+                },
+                "helpTexts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "x-go-name": "HelpTexts"
+                },
+                "showFeedbackButton": {
+                    "type": "boolean",
+                    "x-go-name": "ShowFeedbackButton"
+                },
+                "theme": {
+                    "type": "string",
+                    "x-go-name": "Theme"
+                },
+                "tracking": {
+                    "type": "boolean",
+                    "x-go-name": "Tracking"
+                }
+            },
+            "x-go-package": "groupalarm.com/go/user/api/services"
+        }
+    }
+}

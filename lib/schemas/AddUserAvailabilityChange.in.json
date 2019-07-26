@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "UserAvailabilityChange contains all information for an user's scheduled availability change",
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "integer",
+                    "format": "int64",
+                    "x-go-name": "Duration"
+                },
+                "start_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "x-go-name": "StartTime"
+                },
+                "user_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "x-go-name": "UserID"
+                }
+            },
+            "x-go-package": "groupalarm.com/go/user/api/services"
+        }
+    }
+}

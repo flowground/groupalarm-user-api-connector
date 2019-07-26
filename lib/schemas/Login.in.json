@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "description": "The email for this account",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "The password for this account",
+                    "type": "string"
+                },
+                "mfa": {
+                    "description": "The user's current mfa code. This code is required if the user enabled mfa for his account, otherwise it can be left empty. To figure out if the user has mfa enabled, you need to login with username and password first. A http 401 error containing \"MFA required\" allows you to ask the user a current mfa code. Sending username and password again with the mfa code will finalize the login.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "email",
+                "password"
+            ]
+        }
+    }
+}

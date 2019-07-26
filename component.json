@@ -1,0 +1,367 @@
+{
+    "title": "groupalarm User API",
+    "description": "The user service implements all user functions for GroupAlarm.\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
+    "docsUrl": "",
+    "url": "https://app.groupalarm.com/api/v1",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://app.groupalarm.com/api/v1",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "auth_API_Token": {
+                "label": "API-TOKEN (API_Token)",
+                "viewClass": "TextFieldView",
+                "note": "To use this API, you need an API-Token from the RBAC settings of your GroupAlarm organization. Place the token inside the HTTP-Header `API-Token` for every request, otherwise the API will return an \"401 Unauthorized\" error for your request."
+            },
+            "auth_Personal-Access-Token": {
+                "label": "Personal-Access-Token (Personal-Access-Token)",
+                "viewClass": "TextFieldView",
+                "note": "To use this API, you need a Personal Access Token from your profile settings. Place the token inside the HTTP-Header `Personal-Access-Token` for every request, otherwise the API will return an \"401 Unauthorized\" error for your request."
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Login": {
+            "main": "./lib/actions/Login.js",
+            "title": "Login",
+            "description": "Handles the user login and returns a user payload with JWT token",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Login.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetInvitationText": {
+            "main": "./lib/actions/GetInvitationText.js",
+            "title": "GetInvitationText",
+            "description": "Get the organization's saved invitation text configuration",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetInvitationText.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SetInvitationText": {
+            "main": "./lib/actions/SetInvitationText.js",
+            "title": "SetInvitationText",
+            "description": "Set the organization's invitation text configuration",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SetInvitationText.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MFAIsActive": {
+            "main": "./lib/actions/MFAIsActive.js",
+            "title": "MFAIsActive",
+            "description": "Check if the current user has MFA enabled or not",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MFAIsActive.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MFACreate": {
+            "main": "./lib/actions/MFACreate.js",
+            "title": "MFACreate",
+            "description": "Creates a new, disabled MFA config for the current user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MFACreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MFAEnable": {
+            "main": "./lib/actions/MFAEnable.js",
+            "title": "MFAEnable",
+            "description": "Enables a new MFA config for the current user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MFAEnable.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MFADisable": {
+            "main": "./lib/actions/MFADisable.js",
+            "title": "MFADisable",
+            "description": "Disables the MFA config for the current user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MFADisable.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "MFAGenerateBackupCodes": {
+            "main": "./lib/actions/MFAGenerateBackupCodes.js",
+            "title": "MFAGenerateBackupCodes",
+            "description": "Creates ten new, one-time-use backup codes",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/MFAGenerateBackupCodes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteUser": {
+            "main": "./lib/actions/DeleteUser.js",
+            "title": "Deletes the current user irreversibly.",
+            "description": "Can only be used after leaving all organizations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetSettings": {
+            "main": "./lib/actions/GetSettings.js",
+            "title": "GetSettings",
+            "description": "Get the current user's saved settings or the default settings if none are found",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetSettings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StoreSettings": {
+            "main": "./lib/actions/StoreSettings.js",
+            "title": "StoreSettings",
+            "description": "Saves the current user's settings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StoreSettings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetUser": {
+            "main": "./lib/actions/GetUser.js",
+            "title": "GetUser",
+            "description": "Gets the complete user payload from the passed JWT token",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UpdateUser": {
+            "main": "./lib/actions/UpdateUser.js",
+            "title": "UpdateUser",
+            "description": "Updates the user profile",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpdateUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "InviteUser": {
+            "main": "./lib/actions/InviteUser.js",
+            "title": "InviteUser",
+            "description": "Invites an existing or new user to an organization and sends an invitation email to the passed address",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/InviteUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetSpecificUser": {
+            "main": "./lib/actions/GetSpecificUser.js",
+            "title": "GetSpecificUser",
+            "description": "Returns a specific user with the passed api for organization members",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetSpecificUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteUserFromOrganization": {
+            "main": "./lib/actions/DeleteUserFromOrganization.js",
+            "title": "DeleteUserFromOrganization",
+            "description": "Removes a user from an organization",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteUserFromOrganization.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetUsersInOrganization": {
+            "main": "./lib/actions/GetUsersInOrganization.js",
+            "title": "GetUsersInOrganization",
+            "description": "Returns all users from an organization",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetUsersInOrganization.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AddUserAvailabilityChange": {
+            "main": "./lib/actions/AddUserAvailabilityChange.js",
+            "title": "AddUserAvailabilityChange",
+            "description": "Add a new availability change for the current user or update an existing one",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AddUserAvailabilityChange.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetUsersInOrganizationPagination": {
+            "main": "./lib/actions/GetUsersInOrganizationPagination.js",
+            "title": "GetUsersInOrganizationPagination",
+            "description": "Returns all users from an organization with pagination",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetUsersInOrganizationPagination.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

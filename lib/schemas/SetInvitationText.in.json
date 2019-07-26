@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "InvitationText contains all information about a custom invitation text",
+            "type": "object",
+            "properties": {
+                "organization_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "x-go-name": "OrganizationID"
+                },
+                "text": {
+                    "type": "string",
+                    "x-go-name": "Text"
+                }
+            },
+            "x-go-package": "groupalarm.com/go/user/api/services"
+        }
+    }
+}

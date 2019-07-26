@@ -1,0 +1,235 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "UserInvite describes an user invite payload",
+            "type": "object",
+            "required": [
+                "organization",
+                "users"
+            ],
+            "properties": {
+                "organization": {
+                    "description": "Organization payload",
+                    "type": "object",
+                    "properties": {
+                        "availableUsers": {
+                            "description": "AvailableUsers payload",
+                            "type": "object",
+                            "properties": {
+                                "countAvailable": {
+                                    "description": "count of available users",
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "x-go-name": "CountAvailable"
+                                },
+                                "countInEvent": {
+                                    "description": "count of \"in-event\" users",
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "x-go-name": "CountInEvent"
+                                },
+                                "countNotAvailable": {
+                                    "description": "count of not available users",
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "x-go-name": "CountNotAvailable"
+                                }
+                            },
+                            "x-go-package": "groupalarm.com/go/organization/api/services"
+                        },
+                        "availableUsersTotal": {
+                            "description": "AvailableUsers payload",
+                            "type": "object",
+                            "properties": {
+                                "countAvailable": {
+                                    "description": "count of available users",
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "x-go-name": "CountAvailable"
+                                },
+                                "countInEvent": {
+                                    "description": "count of \"in-event\" users",
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "x-go-name": "CountInEvent"
+                                },
+                                "countNotAvailable": {
+                                    "description": "count of not available users",
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "x-go-name": "CountNotAvailable"
+                                }
+                            },
+                            "x-go-package": "groupalarm.com/go/organization/api/services"
+                        },
+                        "description": {
+                            "description": "user defined description",
+                            "type": "string",
+                            "x-go-name": "Description"
+                        },
+                        "hasChildren": {
+                            "description": "defines if it's the parent of any other organization",
+                            "type": "boolean",
+                            "x-go-name": "HasChildren"
+                        },
+                        "id": {
+                            "description": "ID of this organization",
+                            "type": "integer",
+                            "format": "int64",
+                            "x-go-name": "ID"
+                        },
+                        "isDemo": {
+                            "description": "is true, when there is no billing configuration for this organization",
+                            "type": "boolean",
+                            "x-go-name": "IsDemo"
+                        },
+                        "name": {
+                            "description": "user defined name",
+                            "type": "string",
+                            "x-go-name": "Name"
+                        },
+                        "ownerIDs": {
+                            "description": "user id of the organization owner/creator",
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "x-go-name": "OwnerIDs"
+                        },
+                        "parentID": {
+                            "description": "optional: ID of the parent organization",
+                            "type": "integer",
+                            "format": "int64",
+                            "x-go-name": "ParentID"
+                        }
+                    },
+                    "x-go-package": "groupalarm.com/go/organization/api/services"
+                },
+                "users": {
+                    "description": "array of user bulk elements",
+                    "type": "array",
+                    "items": {
+                        "description": "BulkUserElement describes an user bulk element",
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string",
+                                "x-go-name": "Email"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "format": "int64",
+                                "x-go-name": "ID"
+                            },
+                            "labels": {
+                                "type": "array",
+                                "items": {
+                                    "description": "Label describes a label payload",
+                                    "type": "object",
+                                    "required": [
+                                        "organizationID",
+                                        "name"
+                                    ],
+                                    "properties": {
+                                        "assignees": {
+                                            "description": "assigned user for this label",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            "x-go-name": "Assignees"
+                                        },
+                                        "color": {
+                                            "description": "hex color code",
+                                            "type": "string",
+                                            "x-go-name": "Color"
+                                        },
+                                        "description": {
+                                            "description": "description for this labels",
+                                            "type": "string",
+                                            "x-go-name": "Description"
+                                        },
+                                        "id": {
+                                            "description": "id for this label",
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-go-name": "ID"
+                                        },
+                                        "name": {
+                                            "description": "name of this label",
+                                            "type": "string",
+                                            "x-go-name": "Name"
+                                        },
+                                        "organizationID": {
+                                            "description": "organization id for this label",
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "x-go-name": "OrganizationID"
+                                        }
+                                    },
+                                    "x-go-package": "groupalarm.com/go/user/api/services"
+                                },
+                                "x-go-name": "Labels"
+                            },
+                            "rank": {
+                                "type": "string",
+                                "x-go-name": "Rank"
+                            },
+                            "roles": {
+                                "type": "array",
+                                "items": {
+                                    "description": "This is used for role interaction",
+                                    "type": "object",
+                                    "title": "Definition of a role payload",
+                                    "required": [
+                                        "name",
+                                        "organizationID"
+                                    ],
+                                    "properties": {
+                                        "description": {
+                                            "description": "Optional description for this role",
+                                            "type": "string",
+                                            "x-go-name": "Description"
+                                        },
+                                        "id": {
+                                            "description": "ID for this role",
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "minimum": 1,
+                                            "x-go-name": "ID"
+                                        },
+                                        "name": {
+                                            "description": "Name for this role",
+                                            "type": "string",
+                                            "x-go-name": "Name"
+                                        },
+                                        "organizationID": {
+                                            "description": "Connected organization ID",
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "minimum": 1,
+                                            "x-go-name": "OrganizationID"
+                                        },
+                                        "type": {
+                                            "description": "Definition of default organization roles",
+                                            "type": "string",
+                                            "x-go-name": "Type"
+                                        }
+                                    },
+                                    "x-go-package": "groupalarm.com/go/rbac/api/services"
+                                },
+                                "x-go-name": "Roles"
+                            }
+                        },
+                        "x-go-package": "groupalarm.com/go/user/api/services"
+                    },
+                    "x-go-name": "Users"
+                }
+            },
+            "x-go-package": "groupalarm.com/go/user/api/services"
+        }
+    }
+}
